@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .link-button {
+            padding: 12px 30px;
+            background-color: #8f8f8f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            outline: 2px solid #ffffff;
+        }
+        .link-button:hover {
+            background-color: #ff5252;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body style="background-color:black;">
+
+    <img 
+    src="Assets/Gifs/Jaazyskeleton3DText.gif" 
+    width="550" height="325" 
+    style="display:block; margin-left:auto; margin-right:auto;"
+    >
+
+    <img 
+    src="Assets/Art/Doodle_White.png" 
+    width="250" height="250" 
+    style="position:absolute; right:20px; top:475px; transform:rotate(5deg);"
+    >
+
+    <img 
+    src="Assets/Art/Namey_White.png" 
+    width="250" height="275" 
+    style="position:absolute; left:20px; top:225px; transform:rotate(-1deg);"
+    >
+
+    <div style="width:100%; max-width:900px; margin:0 auto; padding:20px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+        <p style="color:white; text-align:center; font-size:25px;">
+            welcome to my webpage
+        </p>
+
+        <div style="display:flex; gap:20px; justify-content:center; align-items:center; margin:20px 0;">
+            <style>
+                .social-icon {
+                    transition: transform 0.2s ease;
+                }
+                .social-icon:hover {
+                    transform: scale(1.12);
+                }
+            </style>
+            <a href="https://www.reddit.com/r/jaazyskeleton/" style="text-decoration:none;">
+                <img class="social-icon" src="Assets/Icons/Reddit.png" width="50" height="50" alt="Reddit">
+            </a>
+            <a href="https://discord.gg/E4mdYgSQsw" style="text-decoration:none;">
+                <img class="social-icon" src="Assets/Icons/Discord.png" width="50" height="50" alt="Discord">
+            </a>
+            <a href="https://www.youtube.com/@jaazyskeleton" style="text-decoration:none;">
+                <img class="social-icon" src="Assets/Icons/Youtube.png" width="60" height="40" alt="Youtube">
+            </a>
+        </div>
+
+        <div style="display:flex; gap:20px; justify-content:center; align-items:center; margin:20px 0; flex-wrap:wrap;">
+            <a href="#about" class="link-button">About</a>
+            <a href="#portfolio" class="link-button">Portfolio</a>
+            <a href="#contact" class="link-button">Contact</a>
+        </div>
+    </div>
+</body>
+</html>
