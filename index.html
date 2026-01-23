@@ -2,28 +2,45 @@
 <html>
 <head>
     <style>
+        a.arial-font {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         .link-button {
             padding: 12px 30px;
-            background-color: #8f8f8f;
+            background-color: #1d1d1d;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
             font-size: 16px;
             transition: background-color 0.3s ease, transform 0.2s ease;
             border: none;
             cursor: pointer;
             display: inline-block;
-            outline: 2px solid #ffffff;
         }
         .link-button:hover {
             background-color: #ff5252;
             transform: scale(1.05);
         }
+        .icon {
+            transition: transform 0.2s ease;
+        }
+        .icon:hover {
+            transform: scale(1.12);
+        }
     </style>
 </head>
+<title>Home</title>
+<link rel="icon" type="image/x-icon" href="Assets/Icons/Icon.png">
+
 <body style="background-color:black;">
 
-    <img 
+    <div style="display:flex; gap:0; justify-content:space-around; align-items:top; width:100%; padding:2px 0; background-color:#111111;">
+        <a href="https://www.jaazyskeleton.net/about" class="link-button" style="flex:1; text-align:center;" class="arial-font">About</a>
+        <a href="https://www.jaazyskeleton.net/portfolio" class="link-button" style="flex:1; text-align:center;" class="arial-font">Portfolio</a>
+        <a href="https://www.jaazyskeleton.net/contact" class="link-button" style="flex:1; text-align:center;" class="arial-font">Contact</a>
+    </div>
+
+    <img
     src="Assets/Gifs/Jaazyskeleton3DText.gif" 
     width="550" height="325" 
     style="display:block; margin-left:auto; margin-right:auto;"
@@ -47,22 +64,14 @@
         </p>
 
         <div style="display:flex; gap:20px; justify-content:center; align-items:center; margin:20px 0;">
-            <style>
-                .social-icon {
-                    transition: transform 0.2s ease;
-                }
-                .social-icon:hover {
-                    transform: scale(1.12);
-                }
-            </style>
             <a href="https://www.reddit.com/r/jaazyskeleton/" style="text-decoration:none;">
                 <img class="social-icon" src="Assets/Icons/Reddit.png" width="50" height="50" alt="Reddit">
             </a>
             <a href="https://discord.gg/E4mdYgSQsw" style="text-decoration:none;">
-                <img class="social-icon" src="Assets/Icons/Discord.png" width="50" height="50" alt="Discord">
+                <img class="icon" src="Assets/Icons/Discord.png" width="75" height="75" alt="Discord">
             </a>
             <a href="https://www.youtube.com/@jaazyskeleton" style="text-decoration:none;">
-                <img class="social-icon" src="Assets/Icons/Youtube.png" width="60" height="40" alt="Youtube">
+                <img class="icon" src="Assets/Icons/Youtube.png" width="60" height="40" alt="Youtube">
             </a>
         </div>
     </div>
