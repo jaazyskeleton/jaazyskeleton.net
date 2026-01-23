@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        a.arial-font {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .link-button {
+            padding: 12px 30px;
+            background-color: #1d1d1d;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .link-button:hover {
+            background-color: #5289ff;
+            transform: scale(1.05);
+        }
+        .icon {
+            transition: transform 0.2s ease;
+        }
+        .icon:hover {
+            transform: scale(1.12);
+        }
+        .scrolling-frame {
+            width: 100%;
+            max-width: 900px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .scrolling-frame::-webkit-scrollbar {
+            height: 8px;
+        }
+        .scrolling-frame::-webkit-scrollbar-track {
+            background: #222222;
+        }
+        .scrolling-frame::-webkit-scrollbar-thumb {
+            background: #5289ff;
+            border-radius: 4px;
+        }
+        .scrolling-frame::-webkit-scrollbar-thumb:hover {
+            background: #6fa3ff;
+        }
+        .image-container {
+            display: flex;
+            gap: 15px;
+            padding: 0 15px;
+            white-space: nowrap;
+        }
+        .image-container img {
+            flex-shrink: 0;
+            height: 200px;
+            width: auto;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<title>Portfolio</title>
+<link rel="icon" type="image/x-icon" href="Assets/Icons/Icon.png">
+
+<body style="background-image:url('Assets/Background/7W.png'); width:100%; height:100vh; margin:0; padding:0; background-size:cover; background-attachment:fixed;">
+
+    <div style="display:flex; gap:0; justify-content:space-around; align-items:top; width:100%; padding:2px 0; background-color:#111111;">
+        <a href="https://www.jaazyskeleton.net/about" class="link-button" style="flex:1; text-align:center;" class="arial-font">About</a>
+        <a href="https://www.jaazyskeleton.net/portfolio" class="link-button" style="flex:1; text-align:center;" class="arial-font">Portfolio</a>
+        <a href="https://www.jaazyskeleton.net/contact" class="link-button" style="flex:1; text-align:center;" class="arial-font">Contact</a>
+    </div>
+
+    <div style="background-color:black; width:100%; max-width:900px; margin:0 auto; padding:20px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+        <img
+        src="Assets/Icons/Portfolio_Title.png" 
+        width="600" height="150" 
+        style="display:block; margin-left:auto; margin-right:auto;"
+        >
+        
+        <div class="scrolling-frame">
+            <div class="image-container">
+                <img src="Assets/Art/port/Amalgamated Shapes.gif" alt="1">
+                <img src="Assets/Art/port/Base.png" alt="2">
+                <img src="Assets/Art/port/Carot_Soup.png" alt="3">
+                <img src="Assets/Art/port/D0ward.png" alt="4">
+                <img src="Assets/Art/port/domest.gif" alt="5">
+                <img src="Assets/Art/port/Geo-duo.gif" alt="6">
+                <img src="Assets/Art/port/happy birch.gif" alt="7">
+
+                <img src="Assets/Art/port/Isolation.gif" alt="8">
+                <img src="Assets/Art/port/Judgement.png" alt="9">
+                <img src="Assets/Art/port/KILL.png" alt="10">
+                <img src="Assets/Art/port/knight.gif" alt="11">
+                <img src="Assets/Art/port/Living Corpse.gif" alt="12">
+                <img src="Assets/Art/port/Musical Hill (Texted).png" alt="13">
+                <img src="Assets/Art/port/Namey.png" alt="14">
+
+                <img src="Assets/Art/port/OFB.png" alt="15">
+                <img src="Assets/Art/port/Overdosed.png" alt="16">
+                <img src="Assets/Art/port/Purple Money Wizard.gif" alt="17">
+                <img src="Assets/Art/port/resurrected carcus.gif" alt="18">
+                <img src="Assets/Art/port/tiny town.gif" alt="19">
+                <img src="Assets/Art/port/Young Soul.gif" alt="20">
+            </div>
+        </div>
+
+        <a href="https://www.jaazyskeleton.net/">
+            <img 
+            class="icon"
+            src="Assets/Art/Home_Button.png" 
+            width="125" height="100"
+            >
+        </a>
+    </div>
+</body>
+</html>
