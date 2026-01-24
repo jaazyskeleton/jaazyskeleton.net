@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        
+        .frame {
+            width: 95vw;
+            height: 95vh;
+            border: 3px solid #eb8f39;
+            padding: 40px;
+            background-color: #fff;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .frame::before {
+            content: '////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            font-size: 12px;
+            font-weight: bold;
+            color: #eb8f39;
+            letter-spacing: 2px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        
+        .frame::after {
+            content: '/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            font-size: 12px;
+            font-weight: bold;
+            color: #eb8f39;
+            letter-spacing: 2px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        
+        .content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #666;
+        }
+
+        #console {
+            width: 100%;
+            height: 100%;
+            background: #111;
+            color: #eb8f39;
+            font-family: monospace;
+            padding: 20px;
+            overflow: auto;
+            border-radius: 8px;
+        }
+
+        #console-output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        #console-input {
+            background: #222;
+            color: #eb8f39;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-family: monospace;
+            font-size: 20px;
+            padding: 4px 8px;
+            margin-left: 8px;
+        }
+
+        #console-input:focus {
+            outline: none;
+        }
+
+        .command-prompt {
+            display: flex;
+            align-items: center;
+        }
+
+        .command-prompt span {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<title>CaRS Interface</title>
+<link rel="icon" type="image/x-icon" href="Assets/Icons/Icon.png">
+
+<body style="background: #111;">
+    <div class="frame" style="background: #111;">
+        <div class="content">
+            <div id="console">
+                <div id="console-output"></div>
+                <div class="command-prompt">
+                    <span>&gt;</span>
+                    <input id="console-input" type="text" autofocus autocomplete="off" />
+                </div>
+            </div>
+            <script>
+                const commands = {
+                    "get.call(run.CaRS)": () => {
+                        let sessionId = sessionStorage.getItem('sessionId');
+                        if (!sessionId) {
+                            sessionId = 'sess-' + Math.random().toString(36).substr(2, 16);
+                            sessionStorage.setItem('sessionId', sessionId);
+                        }
+                        return `Current session id: ${sessionId}`;
+                    },
+                    "call.GLaDOS": () => '<div style="max-width: 100%; max-height: 400px; overflow: auto; padding: 10px; border: 1px solid #eb8f39; border-radius: 4px;"><p>            ,:/+/-<br>/M/              .,-=;//;-<br>.:/= ;MH/,    ,=/+%$XH@MM#@:<br>-$##@+$###@H@MMM#######H:.    -/H#<br>.,H@H@ X######@ -H#####@+-     -+H###@X<br>.,@##H;      +XM##M/,     =%@###@X;-<br>X%-  :M##########$.    .:%M###@%:<br>M##H,   +H@@@$/-.  ,;$M###@%,          -<br>M####M=,,---,.-%%H####M$:          ,+@##<br>@##################@/.         :%H##@$-<br>M###############H,         ;HM##M$=<br>#################.    .=$M##M$=<br>################H..;XM##M$=          .:+<br>M###################@%=           =+@MH%<br>@#################M/.         =+H#X%=<br>=+M###############M,      ,/X#H+:,<br>.;XM###########H=   ,/X#H+:;<br>.=+HM#######M+/+HM@+=.<br>,:/%XM####H/.<br>,.:-=.</p></div>',
+                    about: () => 'welcome to the Call and Responce Service Interface (CaRSI).',
+                    clear: (outputEl) => { outputEl.innerHTML = ''; return ''; }
+                };
+                const output = document.getElementById('console-output');
+                const input = document.getElementById('console-input');
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        const cmd = input.value.trim();
+                        if(cmd) {
+                            output.innerHTML += `<div><span style='color:#eb8f39;'>&gt; ${cmd}</span></div>`;
+                            if (commands[cmd]) {
+                                let result = '';
+                                if(cmd === 'clear') {
+                                    result = commands[cmd](output);
+                                } else {
+                                    result = commands[cmd]();
+                                    if(result) output.innerHTML += `<div>${result}</div>`;
+                                }
+                            } else {
+                                output.innerHTML += `<div style='color:#eb8f39;'>Unknown command: ${cmd}</div>`;
+                            }
+                            output.scrollTop = output.scrollHeight;
+                        }
+                        input.value = '';
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>
