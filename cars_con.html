@@ -109,9 +109,9 @@
             margin-right: 8px;
         }
     </style>
+    <title>CaRS Interface</title>
+    <link rel="icon" type="image/x-icon" href="Assets/Icons/Icon.png">
 </head>
-<title>CaRS Interface</title>
-<link rel="icon" type="image/x-icon" href="Assets/Icons/Icon.png">
 
 <body style="background: #111;">
     <div class="frame" style="background: #111;">
@@ -131,7 +131,7 @@
                             sessionId = 'sess-' + Math.random().toString(36).substr(2, 16);
                             sessionStorage.setItem('sessionId', sessionId);
                         }
-                        return `Current session id: ${sessionId}`;
+                        return `Do not share this ID with anyone. This ID can be used to hijack your computer!              Current session id: ${sessionId}`;
                     },
                     "call.GLaDOS": () => '<div style="max-width: 100%; max-height: 400px; overflow: auto; padding: 10px; border: 1px solid #eb8f39; border-radius: 4px;"><p>            ,:/+/-<br>/M/              .,-=;//;-<br>.:/= ;MH/,    ,=/+%$XH@MM#@:<br>-$##@+$###@H@MMM#######H:.    -/H#<br>.,H@H@ X######@ -H#####@+-     -+H###@X<br>.,@##H;      +XM##M/,     =%@###@X;-<br>X%-  :M##########$.    .:%M###@%:<br>M##H,   +H@@@$/-.  ,;$M###@%,          -<br>M####M=,,---,.-%%H####M$:          ,+@##<br>@##################@/.         :%H##@$-<br>M###############H,         ;HM##M$=<br>#################.    .=$M##M$=<br>################H..;XM##M$=          .:+<br>M###################@%=           =+@MH%<br>@#################M/.         =+H#X%=<br>=+M###############M,      ,/X#H+:,<br>.;XM###########H=   ,/X#H+:;<br>.=+HM#######M+/+HM@+=.<br>,:/%XM####H/.<br>,.:-=.</p></div>',
                     about: () => 'welcome to the Call and Responce Service Interface (CaRSI).',

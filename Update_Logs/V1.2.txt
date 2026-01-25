@@ -1,0 +1,18 @@
+# V1.2
+
+**General**
+> 1 New Secret Page
+> Removed - About and Contact
+> Added: Update and News Page
+
+**Home Page**
+> - Redesigned
+> - Recoded
+
+**Portfolio**
+> - Redesigned
+> - Fixed the slightly visible gap in the scroll bar.
+> - Added more information.
+
+**Call and Response Service Console**
+> Console warning for "get.call(run.CaRS)", "Do not share this ID with anyone. This ID can be used to hijack your computer!".
