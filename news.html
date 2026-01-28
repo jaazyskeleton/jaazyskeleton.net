@@ -62,11 +62,120 @@
         <a class="button" href="https://www.jaazyskeleton.net/portfolio" href="#" style="font-size: 17px; font-family: MS San Serif;">Portfolio</a>
     </div>
 
+    <!-- Physics-enabled draggable/flingable image -->
     <img
-    src="Assets/Gifs/stick_run.gif" 
-    width="75" height="100" 
-    style="position: fixed; bottom: 0%; display:block;"
+    id="physicsObject"
+    src="Assets/Art/Shovel_Head_Standing.png" 
+    width="60" height="100" 
+    style="position: fixed; left: 0px; bottom: 0px; display:block; padding: 10px; border-radius: 5px; transform-style: preserve-3d;"
+    draggable="false"
     >
+<script>
+document.getElementById('physicsObject').addEventListener('dragstart', function(e) {
+    e.preventDefault();
+});
+</script>
+    <script>
+    // Realistic physics for draggable/flingable image
+    const img = document.getElementById('physicsObject');
+    let isDragging = false;
+    let offset = { x: 0, y: 0 };
+    let velocity = { x: 0, y: 0 };
+    let lastMouse = { x: 0, y: 0 };
+    let lastTime = 0;
+    let gravity = 1800; // px/s^2
+    let friction = 0.98;
+    let bounce = 0.6;
+    let ground = 0;
+    let leftBound = 0;
+    let rightBound = 0;
+
+    function updateBounds() {
+        ground = 0;
+        leftBound = 0;
+        rightBound = window.innerWidth - img.width - 20;
+    }
+    updateBounds();
+
+    // Start at bottom left
+    img.style.left = '0px';
+    img.style.bottom = '0px';
+
+    window.addEventListener('resize', updateBounds);
+
+    img.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        offset.x = e.clientX - img.getBoundingClientRect().left;
+        offset.y = e.clientY - img.getBoundingClientRect().top;
+        lastMouse.x = e.clientX;
+        lastMouse.y = e.clientY;
+        lastTime = performance.now();
+        velocity.x = 0;
+        velocity.y = 0;
+        document.body.style.userSelect = 'none';
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            let left = e.clientX - offset.x;
+            let bottom = window.innerHeight - (e.clientY - offset.y) - img.height;
+            img.style.left = Math.max(leftBound, Math.min(rightBound, left)) + 'px';
+            img.style.bottom = Math.max(ground, Math.min(window.innerHeight - img.height - 20, bottom)) + 'px';
+            // Calculate velocity
+            let now = performance.now();
+            let dt = (now - lastTime) / 1000;
+            velocity.x = (e.clientX - lastMouse.x) / (dt || 1);
+            velocity.y = (lastMouse.y - e.clientY) / (dt || 1); // invert for bottom
+            lastMouse.x = e.clientX;
+            lastMouse.y = e.clientY;
+            lastTime = now;
+        }
+    });
+
+    document.addEventListener('mouseup', function(e) {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.userSelect = '';
+        }
+    });
+
+    function animatePhysics() {
+        if (!isDragging) {
+            let left = parseFloat(img.style.left) || 0;
+            let bottom = parseFloat(img.style.bottom) || 0;
+            let dt = 0.016; // ~60fps
+            velocity.y -= gravity * dt;
+            left += velocity.x * dt;
+            bottom += velocity.y * dt;
+            // Collisions
+            if (bottom < ground) {
+                bottom = ground;
+                velocity.y *= -bounce;
+                if (Math.abs(velocity.y) < 30) velocity.y = 0;
+            }
+            if (bottom > window.innerHeight - img.height - 20) {
+                bottom = window.innerHeight - img.height - 20;
+                velocity.y *= -bounce;
+                if (Math.abs(velocity.y) < 30) velocity.y = 0;
+            }
+            if (left < leftBound) {
+                left = leftBound;
+                velocity.x *= -bounce;
+            }
+            if (left > rightBound) {
+                left = rightBound;
+                velocity.x *= -bounce;
+            }
+            // Friction
+            velocity.x *= friction;
+            velocity.y *= friction;
+            img.style.left = left + 'px';
+            img.style.bottom = bottom + 'px';
+        }
+        requestAnimationFrame(animatePhysics);
+    }
+    animatePhysics();
+    </script>
 
     <div style="width:100%; background-color:#ff525200; max-width:900px; margin:0 auto; padding:20px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
         <b style="color:rgb(0, 0, 0); font-family: Arial, Helvetica, sans-serif; text-align:center; font-size:65px;">

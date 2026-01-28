@@ -1,0 +1,6 @@
+# V1.2.1 - January 28, 2026
+
+**General**
+> +1 Secret
+> Update the web icon.
+> Replaced running figure with "Shovel Head".
