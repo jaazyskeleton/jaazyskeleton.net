@@ -49,158 +49,115 @@
             background: -moz-linear-gradient(top, #E5F4FC 0%, #C4E5F6 50%, #98D1EF 51%, #68B3DB 100%);
             background: -webkit-gradient(linear, left top, left bottom, color-stop(0,#E5F4FC), color-stop(0.5,#C4E5F6),color-stop(0.51,#98D1EF),color-stop(1,#68B3DB));
         }
+
+        @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-10px); }
+                    75% { transform: translateX(10px); }
+                }
     </style>
     <title>Home</title>
     <link rel="icon" type="image/x-icon" href="Assets/Icons/Icon.png">
 </head>
 
-<body style="width:100%; background-color: azure; height:100vh; margin:0; padding:0; background-size:cover; background-attachment:fixed;">
-
-    <div style="background: rgba(255, 255, 255, 0.555); height: 30px; box-shadow: 0 2px 12px rgba(0,0,0,0.18);">
-        <a class="button" href="https://www.jaazyskeleton.net/updates" href="#" style="font-size: 17px; font-family: MS San Serif;">Updates</a>
-        <a class="button" href="https://www.jaazyskeleton.net/news" href="#" style="font-size: 17px; font-family: MS San Serif;">News</a>
-        <a class="button" href="https://www.jaazyskeleton.net/portfolio" href="#" style="font-size: 17px; font-family: MS San Serif;">Portfolio</a>
-    </div>
-
-    <!-- Physics-enabled draggable/flingable image -->
-    <img
-    id="physicsObject"
-    src="Assets/Art/Shovel_Head_Standing.png" 
-    width="60" height="100" 
-    style="position: fixed; left: 0px; bottom: 0px; display:block; padding: 10px; border-radius: 5px; transform-style: preserve-3d;"
-    draggable="false"
-    >
-<script>
-document.getElementById('physicsObject').addEventListener('dragstart', function(e) {
-    e.preventDefault();
-});
-</script>
-    <script>
-    // Realistic physics for draggable/flingable image
-    const img = document.getElementById('physicsObject');
-    let isDragging = false;
-    let offset = { x: 0, y: 0 };
-    let velocity = { x: 0, y: 0 };
-    let lastMouse = { x: 0, y: 0 };
-    let lastTime = 0;
-    let gravity = 1800; // px/s^2
-    let friction = 0.98;
-    let bounce = 0.6;
-    let ground = 0;
-    let leftBound = 0;
-    let rightBound = 0;
-
-    function updateBounds() {
-        ground = 0;
-        leftBound = 0;
-        rightBound = window.innerWidth - img.width - 20;
-    }
-    updateBounds();
-
-    // Start at bottom left
-    img.style.left = '0px';
-    img.style.bottom = '0px';
-
-    window.addEventListener('resize', updateBounds);
-
-    img.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        offset.x = e.clientX - img.getBoundingClientRect().left;
-        offset.y = e.clientY - img.getBoundingClientRect().top;
-        lastMouse.x = e.clientX;
-        lastMouse.y = e.clientY;
-        lastTime = performance.now();
-        velocity.x = 0;
-        velocity.y = 0;
-        document.body.style.userSelect = 'none';
-    });
-
-    document.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-            let left = e.clientX - offset.x;
-            let bottom = window.innerHeight - (e.clientY - offset.y) - img.height;
-            img.style.left = Math.max(leftBound, Math.min(rightBound, left)) + 'px';
-            img.style.bottom = Math.max(ground, Math.min(window.innerHeight - img.height - 20, bottom)) + 'px';
-            // Calculate velocity
-            let now = performance.now();
-            let dt = (now - lastTime) / 1000;
-            velocity.x = (e.clientX - lastMouse.x) / (dt || 1);
-            velocity.y = (lastMouse.y - e.clientY) / (dt || 1); // invert for bottom
-            lastMouse.x = e.clientX;
-            lastMouse.y = e.clientY;
-            lastTime = now;
-        }
-    });
-
-    document.addEventListener('mouseup', function(e) {
-        if (isDragging) {
-            isDragging = false;
-            document.body.style.userSelect = '';
-        }
-    });
-
-    function animatePhysics() {
-        if (!isDragging) {
-            let left = parseFloat(img.style.left) || 0;
-            let bottom = parseFloat(img.style.bottom) || 0;
-            let dt = 0.016; // ~60fps
-            velocity.y -= gravity * dt;
-            left += velocity.x * dt;
-            bottom += velocity.y * dt;
-            // Collisions
-            if (bottom < ground) {
-                bottom = ground;
-                velocity.y *= -bounce;
-                if (Math.abs(velocity.y) < 30) velocity.y = 0;
-            }
-            if (bottom > window.innerHeight - img.height - 20) {
-                bottom = window.innerHeight - img.height - 20;
-                velocity.y *= -bounce;
-                if (Math.abs(velocity.y) < 30) velocity.y = 0;
-            }
-            if (left < leftBound) {
-                left = leftBound;
-                velocity.x *= -bounce;
-            }
-            if (left > rightBound) {
-                left = rightBound;
-                velocity.x *= -bounce;
-            }
-            // Friction
-            velocity.x *= friction;
-            velocity.y *= friction;
-            img.style.left = left + 'px';
-            img.style.bottom = bottom + 'px';
-        }
-        requestAnimationFrame(animatePhysics);
-    }
-    animatePhysics();
-    </script>
+<body style="width:100%; background-color: azure; height:100vh; margin:0; padding:0; padding-top: 40px; background-size:cover; background-attachment:fixed;">
 
     <div style="width:100%; background-color:#ff525200; max-width:900px; margin:0 auto; padding:20px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-        <b style="color:rgb(0, 0, 0); font-family: Arial, Helvetica, sans-serif; text-align:center; font-size:65px;">
+        <b style="color:rgb(0, 0, 0); font-family: Segoe UI, Tahoma, sans-serif; text-align:center; font-size:65px;">
             jaazyskeleton.net
         </b>
-        <i style="color:rgb(0, 0, 0); font-family: Arial, Helvetica, sans-serif; text-align:center; font-size:20px;">
+        <i style="color:rgb(0, 0, 0); font-family: Segoe UI, Tahoma, sans-serif; text-align:center; font-size:20px;">
             this is my website.
         </i>
-        
-        <img
-        src="Assets/Gifs/crt.gif" 
-        width="400" height="400" 
-        style="display:block; margin-left:auto; margin-right:auto;"
-        >
 
-        <div style="display:flex; gap:20px; justify-content:center; align-items:center; margin:20px 0;">
+        <div style="position: relative; display: inline-block;">
+            <img
+                src="Assets/Screen.png"
+                width="625"
+                height="500"
+                style="
+                    display: block;
+                    position: relative;
+                    z-index: 1;
+                "
+            >
+
+            <img
+                src="Assets/Screen_Effect.png"
+                style="
+                    position: absolute;
+                    top: 115px;
+                    left: 90px;
+                    width: 450px;
+                    height: 300px;
+                    pointer-events: none;
+                    z-index: 3;
+                "
+            >
+
+            <div style="
+                position: absolute;
+                top: 45%;
+                left: 45%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                z-index: 2;
+            ">
+                <a class="button" href="https://www.jaazyskeleton.net/updates"
+                style="font-size: 12px; font-family: Segoe UI, Tahoma, sans-serif;">
+                Updates
+                </a>
+
+                <a class="button" href="https://www.jaaszszkeleton.net/news"
+                style="font-size: 12px; font-family: Segoe UI, sans-serif;">
+                News
+                </a>
+
+                <a class="button" href="https://www.jaaszszkeleton.net/portfolio"
+                style="font-size: 12px; font-family: Segoe UI, Tahoma, sans-serif;">
+                Portfolio
+                </a>
+            </div>
+
+            <div style="
+                position: absolute;
+                top: 67.5%;
+                left: 33.25%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                z-index: 2;
+            ">
             <a href="https://www.reddit.com/r/jaazyskeleton/" style="text-decoration:none;">
                 <img class="icon" src="Assets/Icons/Reddit.png" width="50" height="50" alt="Reddit">
             </a>
-            <a href="https://discord.gg/E4mdYgSQsw" style="text-decoration:none;">
-                <img class="icon" src="Assets/Icons/Discord.png" width="75" height="75" alt="Discord">
+            <a style="text-decoration:none;" onclick="shakeDisapproval(event)">
+                <img class="icon" src="Assets/Icons/Discord.png" width="75" height="75" alt="Discord" id="discord-icon">
             </a>
+            <script>
+                function shakeDisapproval(event) {
+                    const icon = event.target;
+                    icon.style.animation = 'none';
+                    icon.style.cursor = 'not-allowed';
+                    setTimeout(() => {
+                        icon.style.animation = 'shake 0.5s';
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        icon.style.cursor = 'pointer';
+                    }, 500);
+                    
+                    const audio = new Audio('Assets/Sounds/vox-denied.mp3');
+                    audio.play();
+                }
+            </script>
+
             <a href="https://www.youtube.com/@jaazyskeleton" style="text-decoration:none;">
                 <img class="icon" src="Assets/Icons/Youtube.png" width="60" height="40" alt="Youtube">
             </a>
+        </div>
         </div>
     </div>
 </body>
